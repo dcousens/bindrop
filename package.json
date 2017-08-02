@@ -1,0 +1,33 @@
+{
+  "name": "bindrop",
+  "version": "1.0.0",
+  "description": "A streaming binary cut tool written in C++",
+  "scripts": {
+    "preinstall": "make"
+  },
+  "keywords": [
+    "binary",
+    "cin",
+    "cli",
+    "cout",
+    "drop",
+    "dropped",
+    "dropping",
+    "cut",
+    "stdin",
+    "stdout",
+    "stream",
+    "streams",
+    "unix",
+    "utf8"
+  ],
+  "bin": {
+    "bindrop": "./bindrop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcousens/bindrop.git"
+  },
+  "author": "Daniel Cousens",
+  "license": "ISC"
+}
