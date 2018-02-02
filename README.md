@@ -11,7 +11,7 @@ Byte-for-byte, simple, **not UTF8 aware** (thankfully).
 ## Examples
 
 ``` bash
-// drop bytes 4:8, in 16 byte chunks
+// drop bytes 4:8, every 16 bytes
 echo "whats in the box" | ./bindrop 4 8 16
 > what the box
 ```
