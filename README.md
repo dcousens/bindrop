@@ -16,3 +16,5 @@ $ echo -e 'whats in the box\nwhats in the box' | ./bindrop 4 8 17
 what the box
 what the box
 ```
+
+## LICENSE [MIT](LICENSE)
