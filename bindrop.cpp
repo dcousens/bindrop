@@ -21,7 +21,7 @@ int main (int argc, char** argv) {
 	assert(dropEnd > 0);
 	assert(dropStart < totalBytes);
 
-	const auto slice = new uint8_t[totalBytes];
+	auto const slice = new uint8_t[totalBytes];
 
 	while (fread(slice, totalBytes, 1, stdin) == 1) {
 		fwrite(slice, dropStart, 1, stdout);
