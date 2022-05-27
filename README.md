@@ -10,6 +10,6 @@ Drop bytes 4:8, every 17 bytes
 what the box
 who the box?
 ```
-*Warning*: if less than 17 bytes is read, the slice is dropped
+**Warning**: if the bytes read is not a multiple of the slice length (for example, 17 bytes), the remainder is truncated (dropped).
 
 ## LICENSE [MIT](LICENSE)
