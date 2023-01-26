@@ -1,31 +1,32 @@
-#include <cassert>
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
 
-int main (int argc, char** argv) {
-	assert(argc == 4);
+int error (char const* message) {
+	fprintf(stderr, "%s\n", message);
+	return 1;
+}
 
-	size_t dropStart = 0;
-	size_t dropEnd = 0;
-	size_t totalBytes = 0;
+int main (int argc, char** argv) {
+	if (argc != 4) return error("invalid number of arguments");
+
+	size_t start = 0;
+	size_t end = 0;
+	size_t count = 0;
 
 	// eg. 2 22 24, drop bytes[2:22], 24 total bytes
-	if (argc == 4) {
-		assert(sscanf(argv[1], "%lu", &dropStart) == 1);
-		assert(sscanf(argv[2], "%lu", &dropEnd) == 1);
-		assert(dropEnd >= dropStart);
-		assert(sscanf(argv[3], "%lu", &totalBytes) == 1);
-	}
+	if (sscanf(argv[1], "%lu", &start) != 1) return error("bad start offset");
+	if (sscanf(argv[2], "%lu", &end) != 1) return error("bad end offset");
+	if (sscanf(argv[3], "%lu", &count) != 1) return error("bad count");
+	if (start > end) return error("start offset exceeds end");
+	if (end > count) return error("end offset exceeds count");
+	if (end == 0) return error("end offset should be greater than 0");
 
-	assert(dropEnd > 0);
-	assert(dropStart < totalBytes);
+	auto const slice = new uint8_t[count];
 
-	auto const slice = new uint8_t[totalBytes];
-
-	while (fread(slice, totalBytes, 1, stdin) == 1) {
-		fwrite(slice, dropStart, 1, stdout);
-		fwrite(slice + dropEnd, totalBytes - dropEnd, 1, stdout);
+	while (fread(slice, count, 1, stdin) == 1) {
+		fwrite(slice, start, 1, stdout);
+		fwrite(slice + end, count - end, 1, stdout);
 	}
 
 	return 0;
